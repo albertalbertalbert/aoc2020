@@ -1,0 +1,23 @@
+use strict;
+
+open my $fh, '<', "inp.txt" or die "Could not open inp.txt\n";
+my @map;
+my $right = 3;
+my $down  = 1;
+my $pos   = 0;
+my $trees = 0;
+my $row   = 0;
+while (<$fh>) {
+    chomp;
+    #my $width = length $_;
+    if ( substr( $_, $pos, 1) eq "#" ) {
+        $trees++;
+        printf "Row %d:\tTree found at position %d\n", $row, $pos;
+    }
+    $pos += $right;
+    $pos %= length $_;
+    $row++;
+
+}
+printf "Total trees:\t%d", $trees;
+close $fh;
